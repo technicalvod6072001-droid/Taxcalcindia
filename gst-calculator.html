@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GST Calculator India - TaxCalcIndia</title>
+<style>
+body{font-family:Arial;background:#f2f6ff;padding:20px}
+.box{max-width:500px;margin:auto;background:#fff;padding:25px;border-radius:18px;box-shadow:0 10px 25px rgba(0,0,0,.08)}
+h2{text-align:center;color:#1d4ed8}
+input,select,button{width:100%;padding:12px;margin-top:10px;border:1px solid #ccc;border-radius:10px}
+button{background:#1d4ed8;color:#fff;font-weight:bold;border:none}
+.result{margin-top:15px;background:#eef4ff;padding:15px;border-radius:12px}
+</style>
+</head>
+<body>
+<div class="box">
+<h2>GST Calculator</h2>
+
+<input type="number" id="amount" placeholder="Enter Amount">
+
+<select id="gst">
+<option value="5">5% GST</option>
+<option value="12">12% GST</option>
+<option value="18">18% GST</option>
+<option value="28">28% GST</option>
+</select>
+
+<select id="type">
+<option value="add">Add GST</option>
+<option value="remove">Remove GST</option>
+</select>
+
+<button onclick="calcGST()">Calculate</button>
+
+<div class="result" id="result">Enter amount and click calculate</div>
+</div>
+
+<script>
+function calcGST(){
+let amt=parseFloat(document.getElementById('amount').value)||0;
+let gst=parseFloat(document.getElementById('gst').value);
+let type=document.getElementById('type').value;
+
+let gstAmt=0,total=0;
+
+if(type=="add"){
+gstAmt=(amt*gst)/100;
+total=amt+gstAmt;
+document.getElementById('result').innerHTML=
+"Base Amount: ₹"+amt.toFixed(2)+"<br>GST: ₹"+gstAmt.toFixed(2)+"<br>Total: ₹"+total.toFixed(2);
+}else{
+gstAmt=amt-(amt/(1+gst/100));
+total=amt-gstAmt;
+document.getElementById('result').innerHTML=
+"Amount Without GST: ₹"+total.toFixed(2)+"<br>GST Included: ₹"+gstAmt.toFixed(2)+"<br>Total Entered: ₹"+amt.toFixed(2);
+}
+}
+</script>
+
+</body>
+</html>
