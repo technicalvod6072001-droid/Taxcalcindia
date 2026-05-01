@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SIP Calculator India - TaxCalcIndia</title>
+<style>
+body{font-family:Arial;background:#f2f6ff;padding:20px}
+.box{max-width:520px;margin:auto;background:#fff;padding:25px;border-radius:18px;box-shadow:0 10px 25px rgba(0,0,0,.08)}
+h2{text-align:center;color:#1d4ed8}
+input,button{width:100%;padding:12px;margin-top:10px;border:1px solid #ccc;border-radius:10px}
+button{background:#1d4ed8;color:#fff;font-weight:bold;border:none}
+.result{margin-top:15px;background:#eef4ff;padding:15px;border-radius:12px;line-height:1.8}
+</style>
+</head>
+<body>
+<div class="box">
+<h2>SIP Calculator</h2>
+
+<input type="number" id="monthly" placeholder="Monthly Investment ₹">
+
+<input type="number" id="rate" placeholder="Expected Return % (Annual)">
+
+<input type="number" id="years" placeholder="Investment Period (Years)">
+
+<button onclick="calcSIP()">Calculate Returns</button>
+
+<div class="result" id="result">Enter details and click calculate</div>
+</div>
+
+<script>
+function calcSIP(){
+let P=parseFloat(document.getElementById('monthly').value)||0;
+let annual=parseFloat(document.getElementById('rate').value)||0;
+let years=parseFloat(document.getElementById('years').value)||0;
+
+if(P<=0||annual<=0||years<=0){
+document.getElementById('result').innerHTML='Please enter valid details';
+return;
+}
+
+let r=annual/12/100;
+let n=years*12;
+
+let future=P*((Math.pow(1+r,n)-1)/r)*(1+r);
+let invested=P*n;
+let gains=future-invested;
+
+document.getElementById('result').innerHTML=
+"<b>Total Invested:</b> ₹"+invested.toFixed(2)+
+"<br><b>Estimated Returns:</b> ₹"+gains.toFixed(2)+
+"<br><b>Maturity Value:</b> ₹"+future.toFixed(2);
+}
+</script>
+
+</body>
+</html>
