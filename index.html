@@ -18,7 +18,14 @@ button:hover{background:#1e40af}
 </head>
 <body>
 <div class="wrap">
-<h2>TDS Interest Calculator</h2>
+<h2>TaxCalcIndia</h2>
+<p style='text-align:center;color:#555;margin-top:-8px'>Free Tax & Finance Tools for India</p>
+<div style='display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 0'>
+<div class='result'><b>TDS Calculator</b><br><span class='small'>Late fee & interest</span></div>
+<div class='result'><b>GST Calculator</b><br><span class='small'>Coming Soon</span></div>
+<div class='result'><b>EMI Calculator</b><br><span class='small'>Coming Soon</span></div>
+<div class='result'><b>Income Tax</b><br><span class='small'>Coming Soon</span></div>
+</div>
 <label>TDS Amount (₹)</label>
 <input type="number" id="amount" placeholder="Enter amount">
 <label>Interest Type</label>
@@ -32,28 +39,10 @@ button:hover{background:#1e40af}
 <input type="date" id="payDate">
 <button onclick="calcTDS()">Calculate Interest</button>
 <div class="result" id="result">Fill details and click calculate.</div>
-<div class="small">Part of month is counted as full month.</div>
+<button onclick="addRow()">Add To Table</button>
+<button onclick="downloadPDF()">Download PDF</button>
+<div class="result"><table style='width:100%;font-size:12px' border='1' cellpadding='6'><thead><tr><th>Amount</th><th>Due</th><th>Paid</th><th>Result</th></tr></thead><tbody id='tbody'></tbody></table></div>
+<p class='small' style='text-align:center'>© TaxCalcIndia</p>
 </div>
-<script>
-function monthDiffWithPart(start,end){
- let s=new Date(start), e=new Date(end);
- let months=(e.getFullYear()-s.getFullYear())*12 + (e.getMonth()-s.getMonth());
- if(e.getDate()>=s.getDate()) months +=1; else months +=1; 
- return months<=0?0:months;
-}
-function calcTDS(){
- let amount=parseFloat(document.getElementById('amount').value)||0;
- let rate=parseFloat(document.getElementById('type').value);
- let due=document.getElementById('dueDate').value;
- let pay=document.getElementById('payDate').value;
- if(!amount||!due||!pay){document.getElementById('result').innerHTML='Please fill all fields.';return;}
- if(new Date(pay)<=new Date(due)) {document.getElementById('result').innerHTML='<b>Interest: ₹0</b><br>Paid on time.';return;}
- let months=monthDiffWithPart(due,pay);
- let interest=amount*(rate/100)*months;
- let total=amount+interest;
- document.getElementById('result').innerHTML='<b>Months:</b> '+months+'<br><b>Interest:</b> ₹'+interest.toFixed(2)+'<br><b>Total Outflow:</b> ₹'+total.toFixed(2);
-}
-function addRow(){const r=document.getElementById('result').innerText;const tbody=document.getElementById('tbody');const tr=document.createElement('tr');tr.innerHTML='<td>'+document.getElementById('amount').value+'</td><td>'+document.getElementById('dueDate').value+'</td><td>'+document.getElementById('payDate').value+'</td><td>'+r+'</td>';tbody.appendChild(tr);} function downloadPDF(){window.print();}
-</script>
-<button onclick="addRow()">Add To Table</button><button onclick="downloadPDF()">Download PDF</button><div class="result"><table style='width:100%;font-size:12px' border='1' cellpadding='6'><thead><tr><th>Amount</th><th>Due</th><th>Paid</th><th>Result</th></tr></thead><tbody id='tbody'></tbody></table></div></body>
+</body>
 </html>
