@@ -1,48 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TDS Interest Calculator</title>
+<title>TaxCalcIndia - Free Tax Tools</title>
 <style>
-body{font-family:Arial,sans-serif;background:#f4f7fb;padding:20px}
-.wrap{max-width:520px;margin:auto;background:#fff;padding:24px;border-radius:18px;box-shadow:0 10px 25px rgba(0,0,0,.08)}
-h2{text-align:center;color:#1d4ed8;margin-top:0}
-label{display:block;margin:12px 0 6px;font-weight:700;color:#333}
-input,select,button{width:100%;padding:12px;border:1px solid #d1d5db;border-radius:10px;font-size:15px}
-button{background:#1d4ed8;color:#fff;border:none;font-weight:700;cursor:pointer;margin-top:16px}
-button:hover{background:#1e40af}
-.result{margin-top:18px;padding:14px;background:#eef6ff;border-radius:12px}
-.small{font-size:13px;color:#666}
+body{font-family:Arial;background:#f3f7ff;margin:0;padding:20px}
+.wrap{max-width:900px;margin:auto}
+.top{background:#1d4ed8;color:#fff;padding:25px;border-radius:18px;text-align:center}
+.top h1{margin:0}
+.top p{margin:8px 0 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px;margin-top:20px}
+.card{background:#fff;padding:22px;border-radius:16px;text-decoration:none;color:#111;box-shadow:0 10px 20px rgba(0,0,0,.07);transition:.2s}
+.card:hover{transform:translateY(-5px)}
+.card h3{margin:0 0 8px;color:#1d4ed8}
+.small{color:#666;font-size:14px}
+.footer{text-align:center;color:#666;margin-top:25px}
 </style>
 </head>
 <body>
 <div class="wrap">
-<h2>TaxCalcIndia</h2>
-<p style='text-align:center;color:#555;margin-top:-8px'>Free Tax & Finance Tools for India</p>
-<div style='display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 0'>
-<div class='result'><b>TDS Calculator</b><br><span class='small'>Late fee & interest</span></div>
-<div class='result'><b>GST Calculator</b><br><span class='small'>Coming Soon</span></div>
-<div class='result'><b>EMI Calculator</b><br><span class='small'>Coming Soon</span></div>
-<div class='result'><b>Income Tax</b><br><span class='small'>Coming Soon</span></div>
+
+<div class="top">
+<h1>TaxCalcIndia</h1>
+<p>Free Online Tax & Finance Calculators</p>
 </div>
-<label>TDS Amount (₹)</label>
-<input type="number" id="amount" placeholder="Enter amount">
-<label>Interest Type</label>
-<select id="type">
-<option value="1.5">Late Deposit (1.5% per month)</option>
-<option value="1">Late Deduction (1% per month)</option>
-</select>
-<label>Due Date</label>
-<input type="date" id="dueDate">
-<label>Payment / Deduction Date</label>
-<input type="date" id="payDate">
-<button onclick="calcTDS()">Calculate Interest</button>
-<div class="result" id="result">Fill details and click calculate.</div>
-<button onclick="addRow()">Add To Table</button>
-<button onclick="downloadPDF()">Download PDF</button>
-<div class="result"><table style='width:100%;font-size:12px' border='1' cellpadding='6'><thead><tr><th>Amount</th><th>Due</th><th>Paid</th><th>Result</th></tr></thead><tbody id='tbody'></tbody></table></div>
-<p class='small' style='text-align:center'>© TaxCalcIndia</p>
+
+<div class="grid">
+
+<a class="card" href="tds-calculator.html">
+<h3>TDS Calculator</h3>
+<p class="small">Late interest & challan calculator</p>
+</a>
+
+<a class="card" href="gst-calculator.html">
+<h3>GST Calculator</h3>
+<p class="small">Add or remove GST instantly</p>
+</a>
+
+<a class="card" href="emi.html">
+<h3>EMI Calculator</h3>
+<p class="small">Loan EMI calculator</p>
+</a>
+
+<a class="card" href="income-tax.html">
+<h3>Income Tax</h3>
+<p class="small">Old vs New regime calculator</p>
+</a>
+
+<a class="card" href="sip.html">
+<h3>SIP Calculator</h3>
+<p class="small">Mutual fund returns tool</p>
+</a>
+
+<a class="card" href="age.html">
+<h3>Age Calculator</h3>
+<p class="small">Calculate exact age instantly</p>
+</a>
+
+</div>
+
+<div class="footer">
+© TaxCalcIndia
+</div>
+
 </div>
 </body>
 </html>
