@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EMI Calculator India - TaxCalcIndia</title>
+<style>
+body{font-family:Arial;background:#f2f6ff;padding:20px}
+.box{max-width:500px;margin:auto;background:#fff;padding:25px;border-radius:18px;box-shadow:0 10px 25px rgba(0,0,0,.08)}
+h2{text-align:center;color:#1d4ed8}
+input,button{width:100%;padding:12px;margin-top:10px;border:1px solid #ccc;border-radius:10px}
+button{background:#1d4ed8;color:#fff;font-weight:bold;border:none}
+.result{margin-top:15px;background:#eef4ff;padding:15px;border-radius:12px}
+</style>
+</head>
+<body>
+<div class="box">
+<h2>EMI Calculator</h2>
+
+<input type="number" id="loan" placeholder="Loan Amount">
+
+<input type="number" id="rate" placeholder="Interest Rate %">
+
+<input type="number" id="months" placeholder="Loan Tenure (Months)">
+
+<button onclick="calcEMI()">Calculate EMI</button>
+
+<div class="result" id="result">Enter details and click calculate</div>
+</div>
+
+<script>
+function calcEMI(){
+let P=parseFloat(document.getElementById('loan').value)||0;
+let annual=parseFloat(document.getElementById('rate').value)||0;
+let n=parseFloat(document.getElementById('months').value)||0;
+
+let r=annual/12/100;
+
+let emi=(P*r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1);
+let total=emi*n;
+let interest=total-P;
+
+document.getElementById('result').innerHTML=
+"Monthly EMI: ₹"+emi.toFixed(2)+
+"<br>Total Payment: ₹"+total.toFixed(2)+
+"<br>Total Interest: ₹"+interest.toFixed(2);
+}
+</script>
+
+</body>
+</html>
