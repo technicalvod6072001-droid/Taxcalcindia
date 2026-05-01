@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TDS Interest Calculator - TaxCalcIndia</title>
+<style>
+body{font-family:Arial;background:#f2f6ff;padding:20px}
+.box{max-width:520px;margin:auto;background:#fff;padding:25px;border-radius:18px;box-shadow:0 10px 25px rgba(0,0,0,.08)}
+h2{text-align:center;color:#1d4ed8}
+input,select,button{width:100%;padding:12px;margin-top:10px;border:1px solid #ccc;border-radius:10px}
+button{background:#1d4ed8;color:#fff;font-weight:bold;border:none}
+.result{margin-top:15px;background:#eef4ff;padding:15px;border-radius:12px;line-height:1.8}
+</style>
+</head>
+<body>
+<div class="box">
+<h2>TDS Interest Calculator</h2>
+
+<input type="number" id="amount" placeholder="TDS Amount ₹">
+
+<select id="type">
+<option value="1.5">Late Deposit (1.5% per month)</option>
+<option value="1">Late Deduction (1% per month)</option>
+</select>
+
+<input type="date" id="due">
+<input type="date" id="paid">
+
+<button onclick="calcTDS()">Calculate</button>
+
+<div class="result" id="result">Enter details and click calculate</div>
+</div>
+
+<script>
+function monthDiff(d1,d2){
+let a=new Date(d1), b=new Date(d2);
+let months=(b.getFullYear()-a.getFullYear())*12+(b.getMonth()-a.getMonth())+1;
+return months<0?0:months;
+}
+
+function calcTDS(){
+let amt=parseFloat(document.getElementById('amount').value)||0;
+let rate=parseFloat(document.getElementById('type').value)||0;
+let due=document.getElementById('due').value;
+let paid=document.getElementById('paid').value;
+
+if(!amt||!due||!paid){
+document.getElementById('result').innerHTML='Please fill all fields';
+return;
+}
+
+if(new Date(paid)<=new Date(due)){
+document.getElementById('result').innerHTML='Interest: ₹0 (Paid on time)';
+return;
+}
+
+let m=monthDiff(due,paid);
+let interest=amt*rate/100*m;
+let total=amt+interest;
+
+document.getElementById('result').innerHTML=
+"<b>Months:</b> "+m+
+"<br><b>Interest:</b> ₹"+interest.toFixed(2)+
+"<br><b>Total Payable:</b> ₹"+total.toFixed(2);
+}
+</script>
+
+</body>
+</html>
