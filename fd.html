@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FD Calculator India - TaxCalcIndia</title>
+<style>
+body{font-family:Arial;background:#f2f6ff;padding:20px}
+.box{max-width:520px;margin:auto;background:#fff;padding:25px;border-radius:18px;box-shadow:0 10px 25px rgba(0,0,0,.08)}
+h2{text-align:center;color:#1d4ed8}
+input,button{width:100%;padding:12px;margin-top:10px;border:1px solid #ccc;border-radius:10px}
+button{background:#1d4ed8;color:#fff;font-weight:bold;border:none}
+.result{margin-top:15px;background:#eef4ff;padding:15px;border-radius:12px;line-height:1.8}
+</style>
+</head>
+<body>
+<div class="box">
+<h2>FD Calculator</h2>
+
+<input type="number" id="amount" placeholder="Investment Amount ₹">
+
+<input type="number" id="rate" placeholder="Interest Rate %">
+
+<input type="number" id="years" placeholder="Tenure (Years)">
+
+<button onclick="calcFD()">Calculate FD</button>
+
+<div class="result" id="result">Enter details and click calculate</div>
+</div>
+
+<script>
+function calcFD(){
+let P=parseFloat(document.getElementById('amount').value)||0;
+let r=parseFloat(document.getElementById('rate').value)||0;
+let t=parseFloat(document.getElementById('years').value)||0;
+
+if(P<=0||r<=0||t<=0){
+document.getElementById('result').innerHTML='Please enter valid details';
+return;
+}
+
+let A=P*Math.pow((1+r/100),t);
+let interest=A-P;
+
+document.getElementById('result').innerHTML=
+"<b>Invested Amount:</b> ₹"+P.toFixed(2)+
+"<br><b>Estimated Interest:</b> ₹"+interest.toFixed(2)+
+"<br><b>Maturity Amount:</b> ₹"+A.toFixed(2);
+}
+</script>
+
+</body>
+</html>
