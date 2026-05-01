@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Age Calculator - TaxCalcIndia</title>
+<style>
+body{font-family:Arial;background:#f2f6ff;padding:20px}
+.box{max-width:500px;margin:auto;background:#fff;padding:25px;border-radius:18px;box-shadow:0 10px 25px rgba(0,0,0,.08)}
+h2{text-align:center;color:#1d4ed8}
+input,button{width:100%;padding:12px;margin-top:10px;border:1px solid #ccc;border-radius:10px}
+button{background:#1d4ed8;color:#fff;font-weight:bold;border:none}
+.result{margin-top:15px;background:#eef4ff;padding:15px;border-radius:12px}
+</style>
+</head>
+<body>
+<div class="box">
+<h2>Age Calculator</h2>
+
+<input type="date" id="dob">
+
+<button onclick="calcAge()">Calculate Age</button>
+
+<div class="result" id="result">Select date of birth and click calculate</div>
+</div>
+
+<script>
+function calcAge(){
+let dob=new Date(document.getElementById('dob').value);
+let today=new Date();
+
+let years=today.getFullYear()-dob.getFullYear();
+let months=today.getMonth()-dob.getMonth();
+let days=today.getDate()-dob.getDate();
+
+if(days<0){
+months--;
+days+=30;
+}
+
+if(months<0){
+years--;
+months+=12;
+}
+
+document.getElementById('result').innerHTML=
+"Age: "+years+" Years, "+months+" Months, "+days+" Days";
+}
+</script>
+
+</body>
+</html>
